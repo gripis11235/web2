@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+
+{% block contents %}
+
+<script>
+    $(function(){
+        $("#summernote").summernote({
+            height: 300,// 여기에 다양한 속성 추가로 적용 가능
+
+        })
+    })
+
+</script>
+
+
+        <table>
+            <form name="form" method="POST" action="/write" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+            <tr>
+                <td>작성자</td>
+                <td><input type="text" name="name" value="{{session['name']}}" readonly /></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" /></td>
+            </tr>
+
+        <tr>
+            <td>내용</td>
+            <td><textarea rows=8 name="contents" id="summernote"></textarea></td>
+        </tr>
+        <tr>
+            <td>파일</td>
+            <td><input type="file" name="attachfile"></td>
+        </tr>
+    </form>
+
+    
+</table>
+
+{% endblock %}
